@@ -1,0 +1,4 @@
+recursive-include rustiql *.json
+recursive-include rustiql *.txt
+recursive-include rustiql *.png
+recursive-include rustiql LICENSE
