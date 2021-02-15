@@ -1,4 +1,9 @@
 import sqlite3 as sqlite
+import os
+import os.path
+import pkgutil
+from pyrustic.jasonix import Jasonix
+from pyrustic.manager import constant
 
 
 class MainHost:
@@ -6,6 +11,7 @@ class MainHost:
         self._dao_builder = dao_builder
         self._dao = None
         self._path = None
+        self._setup()
 
     @property
     def path(self):
@@ -61,6 +67,18 @@ class MainHost:
 
     def table_content(self, name):
         return self._dao.table_content(name)
+
+    def _setup(self):
+        shared_folder = os.path.join(constant.PYRUSTIC_DATA_FOLDER, "rustiql")
+        shared_json_path = os.path.join(shared_folder, "rustiql_shared_data.json")
+        if not os.path.exists(shared_folder):
+            os.makedirs(shared_folder)
+        if not os.path.exists(shared_json_path):
+            default_json = pkgutil.get_data("rustiql",
+                                            "misc/default_shared_data.json")
+            with open(shared_json_path, "wb") as file:
+                file.write(default_json)
+        self._jasonix = Jasonix(shared_json_path)
 
     def _open(self, path):
         dao = None
