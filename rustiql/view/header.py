@@ -1,13 +1,14 @@
 import os
 import os.path
 import tkinter as tk
-from pyrustic.viewable import Viewable
+from pyrustic.view import View
 from pyrustic.widget.toast import Toast
 from tkinter import filedialog
 
 
-class Header(Viewable):
+class Header(View):
     def __init__(self, parent_view, host, internal_data_manager, project):
+        super().__init__()
         self._parent_view = parent_view
         self._host = host
         self._internal_data_manager = internal_data_manager

@@ -1,5 +1,5 @@
 import tkinter as tk
-from pyrustic.viewable import Viewable
+from pyrustic.view import View
 from pyrustic.widget.toast import Toast
 import sqlite3 as sqlite
 
@@ -8,8 +8,9 @@ import sqlite3 as sqlite
 formatter: inline, expanded, script
 datatype: tabular_data, str_data, db_schema
 """
-class Footer(Viewable):
+class Footer(View):
     def __init__(self, parent_view, main_host, editor_builder):
+        super().__init__()
         self._parent_view = parent_view
         self._main_host = main_host
         self._editor_builder = editor_builder

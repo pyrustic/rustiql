@@ -1,13 +1,16 @@
 import os
 import os.path
 import tkinter as tk
-from pyrustic.viewable import Viewable
+from pyrustic.view import View
 from pyrustic.widget.scrollbox import Scrollbox
+from rustiql.view.tree_hook import TreeHook
 
 
-class MainView(Viewable):
+class MainView(View):
     def __init__(self, app, project, main_host, internal_data_manager,
-                 header_builder, tree_builder, footer_builder):
+                 header_builder, tree_builder, nodebar_builder,
+                 footer_builder):
+        super().__init__()
         # args/kwargs
         self._app = app
         self._main_host = main_host
@@ -16,6 +19,7 @@ class MainView(Viewable):
         # builders
         self._header_builder = header_builder
         self._tree_builder = tree_builder
+        self._nodebar_builder = nodebar_builder
         self._footer_builder = footer_builder
         # gui vars
         self._body = None
@@ -83,12 +87,15 @@ class MainView(Viewable):
         self._footer.body.grid(row=2, column=0, sticky="we")
         # install scrollbox
         self._scrollbox = Scrollbox(self._body, orient="y")
-        self._scrollbox.build_grid(row=1, column=0, sticky="nswe", pady=1)
+        self._scrollbox.grid(row=1, column=0, sticky="nswe", pady=1)
         # install tree
-        self._tree = self._tree_builder.build(self,
-                                              self._scrollbox.box,
-                                              self._main_host)
-        self._tree.body.pack(expand=1, fill=tk.X, padx=5)
+        self._tree = self._tree_builder.build(self._scrollbox.box,
+                                              spacing=20)
+        self._tree.pack(expand=1, fill=tk.BOTH, padx=5)
+        hook = (lambda self=self:
+                TreeHook(self,
+                         self._nodebar_builder, self._main_host))
+        self._tree.hook = hook
 
     def _on_display(self):
         # insert root node

@@ -90,7 +90,8 @@ def _get_button_expander_style():
     style.foreground = "gray"
     style.highlightThickness = 0
     style.borderWidth = 0
-    style.activeBackground = "#F0F8FF"
+    style.activeBackground = "white"
+    style.activeForeground = constant.COLOR_BLACK
     style.padX = 3
     style.padY = 1
     return style

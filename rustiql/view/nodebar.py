@@ -1,10 +1,10 @@
-from pyrustic.viewable import Viewable
+from pyrustic.view import View
 from pyrustic.widget.table import Table
 from pyrustic.widget.confirm import Confirm
 import tkinter as tk
 
 
-class Nodebar(Viewable):
+class Nodebar(View):
     def __init__(self, parent_view,
                  node_id,
                  collapsable_frame,
@@ -14,6 +14,7 @@ class Nodebar(Viewable):
                  result,
                  datatype,
                  description):
+        super().__init__()
         self._parent_view = parent_view
         self._node_id = node_id
         self._collapsable_frame = collapsable_frame
@@ -106,8 +107,8 @@ class Nodebar(Viewable):
               titles=result[0],
               data=result[1],
               mask=self._content_table_mask,
-              options={"column_options": {"height": 0}})
-        table.build_pack(side=tk.LEFT)
+              extra_options={"column_options": {"height": 0}})
+        table.pack(side=tk.LEFT)
 
     def _install_db_schema(self, master, result, i=0, table_info=None):
         # TODO: improve this method with a generator ;)
@@ -145,7 +146,7 @@ class Nodebar(Viewable):
                       data=table_info[1],
                       hidden_columns=(0,),
                       mask=self._schema_table_mask)
-        table.build_pack()
+        table.pack()
 
     def old_install_db_schema(self, master, result):  # TODO delete it or improve the new one
         i = 0
@@ -179,7 +180,7 @@ class Nodebar(Viewable):
                           orient="h",
                           mask=self._schema_table_mask,
                           options={"column_options": {"height": 0}})
-            table.build_pack()
+            table.pack()
             command = lambda container=container: container.pack(pady=(0, 20), anchor="w")
             self._body.after(i, command)
             i += 500
@@ -205,7 +206,7 @@ class Nodebar(Viewable):
                           title="Confirmation",
                           header="Truncate the table {}".format(name),
                           message="Do you really want to continue ?")
-        confirm.build_wait()
+        confirm.wait_window()
         if confirm.ok:
             self._parent_view.on_click_truncate(name)
 
@@ -214,7 +215,7 @@ class Nodebar(Viewable):
                           title="Confirmation",
                           header="Drop the table {}".format(name),
                           message="Do you really want to continue ?")
-        confirm.build_wait()
+        confirm.wait_window()
         if confirm.ok:
             self._parent_view.on_click_drop(name)
 

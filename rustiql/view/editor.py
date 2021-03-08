@@ -1,12 +1,13 @@
 import tkinter as tk
 from pyrustic.widget.toast import Toast
-from pyrustic.viewable import Viewable
+from pyrustic.view import View
 from pyrustic import tkmisc
 from tkinter import filedialog
 
 
-class Editor(Viewable):
+class Editor(View):
     def __init__(self, parent_view, project):
+        super().__init__()
         self._parent_view = parent_view
         self._project = project
         self._body = None

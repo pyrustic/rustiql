@@ -3,12 +3,13 @@ from rustiql.host.main_host import MainHost
 from rustiql.host.internal_data_manager import InternalDataManager
 from rustiql.view.main_view import MainView
 from rustiql.view.header import Header
-from rustiql.view.tree import Tree
 from rustiql.view.footer import Footer
 from rustiql.view.editor import Editor
 from rustiql.view.nodebar import Nodebar
 from pyrustic.dao import Dao
+from pyrustic.widget.tree import Tree
 from pyrustic.manager.misc import funcs
+import os
 
 
 class MainDaoBuilder:
@@ -24,12 +25,14 @@ class MainHostBuilder:
 
 class MainViewBuilder:
     def build(self, app):
-        jasonix = funcs.get_manager_jasonix()
-        target = jasonix.data["target"]
+        #jasonix = funcs.get_manager_jasonix()
+        #target = jasonix.data["target"]
+        target = os.getcwd()
         main_host = MainHostBuilder().build()
         internal_data_manager = InternalDataManagerBuilder().build()
         return MainView(app, target, main_host, internal_data_manager,
-                        HeaderBuilder(), TreeBuilder(), FooterBuilder())
+                        HeaderBuilder(), TreeBuilder(),
+                        NodebarBuilder(), FooterBuilder())
 
 
 class HeaderBuilder:
@@ -40,9 +43,8 @@ class HeaderBuilder:
 
 
 class TreeBuilder:
-    def build(self, parent_view, box, host):
-        tree = Tree(parent_view, box, NodebarBuilder(), host)
-        tree.build()
+    def build(self, master, spacing):
+        tree = Tree(master, spacing=spacing)
         return tree
 
 
