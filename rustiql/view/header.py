@@ -52,10 +52,10 @@ class Header(View):
                                      text="In-memory",
                                      command=self._on_click_in_memory)
         # install
-        label_database.grid(row=0, column=0, sticky="nswe", ipadx=3)
-        entry_database.grid(row=0, column=1, sticky="nswe", padx=(0, 0))
-        label_path.grid(row=0, column=2, sticky="nswe", ipadx=3)
-        entry_path.grid(row=0, column=3, sticky="nswe", padx=(0, 3))
+        label_database.grid(row=0, column=0, sticky="we", ipadx=3)
+        entry_database.grid(row=0, column=1, sticky="we", padx=(0, 0))
+        label_path.grid(row=0, column=2, sticky="we", ipadx=3)
+        entry_path.grid(row=0, column=3, sticky="we", padx=(0, 3))
         button_open.grid(row=0, column=4, padx=(0, 3), pady=2)
         button_new.grid(row=0, column=5, padx=(0, 3), pady=2)
         button_in_memory.grid(row=0, column=6, padx=(0, 0), pady=2)

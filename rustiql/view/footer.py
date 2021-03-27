@@ -82,10 +82,10 @@ class Footer(View):
                                   text="Editor",
                                   command=self._on_click_editor)
         # install
-        button_clear.grid(row=0, column=0, sticky="nswe")
+        button_clear.grid(row=0, column=0, sticky="we")
         button_run.grid(row=0, column=2, padx=(3, 3), pady=2)
         button_editor.grid(row=0, column=3, padx=(0, 0), pady=2)
-        self._entry_sql.grid(row=0, column=1, sticky="nswe")
+        self._entry_sql.grid(row=0, column=1, sticky="we")
         return self._body
 
     def _on_display(self):
@@ -116,7 +116,9 @@ class Footer(View):
             result_datatype = "str_data"
             description = "warning"
 
-        self._parent_view.notify_operation_execution(result, result_datatype, description,
+        self._parent_view.notify_operation_execution(result,
+                                                     result_datatype,
+                                                     description,
                                                      sql, formatter)
 
     def _sql_executor(self, sql, is_script):

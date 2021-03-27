@@ -6,12 +6,12 @@ class InternalDataManager:
         self._sqleditor_jasonix = sqleditor_jasonix
 
     def store(self, target, database_path):
-        if target not in self._manager_jasonix.data["last"]:
+        if target not in self._manager_jasonix.data["recent"]:
             return
         self._sqleditor_jasonix.data[target] = database_path
         # clean
         for target in self._sqleditor_jasonix.data.keys():
-            if target not in self._manager_jasonix.data["last"]:
+            if target not in self._manager_jasonix.data["recent"]:
                 del self._sqleditor_jasonix.data[target]
         self._sqleditor_jasonix.save()
 

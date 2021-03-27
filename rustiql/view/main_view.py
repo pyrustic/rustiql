@@ -79,12 +79,14 @@ class MainView(View):
                                                   self._main_host,
                                                   self._internal_data_manager,
                                                   self._project)
-        self._header.body.grid(row=0, column=0, sticky="we")
+        self._header.body.grid(row=0, column=0, sticky="we",
+                               padx=2)
         # install footer
         self._footer = self._footer_builder.build(self,
                                                   self._main_host,
                                                   self._project)
-        self._footer.body.grid(row=2, column=0, sticky="we")
+        self._footer.body.grid(row=2, column=0, sticky="we",
+                               padx=2)
         # install scrollbox
         self._scrollbox = Scrollbox(self._body, orient="y")
         self._scrollbox.grid(row=1, column=0, sticky="nswe", pady=1)
