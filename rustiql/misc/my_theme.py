@@ -133,10 +133,13 @@ def _get_text_message_style():
 # button clear x
 def _get_button_clear_x_style():
     style = button.get_style()
-    style.background = "#FF6060"
-    style.foreground = "white"
-    style.activeBackground = "red"
-    style.activeForeground = "white"
+    style.anchor = "w"
+    style.borderWidth = 0
+    style.padX = 1
+    style.padY = 0
+    style.relief = "flat"
+    style.foreground = "gray"
+    style.highlightThickness = 0
     return style
 
 

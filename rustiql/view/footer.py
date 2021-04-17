@@ -82,7 +82,7 @@ class Footer(View):
                                   text="Editor",
                                   command=self._on_click_editor)
         # install
-        button_clear.grid(row=0, column=0, sticky="we")
+        button_clear.grid(row=0, column=0, sticky="we", padx=2)
         button_run.grid(row=0, column=2, padx=(3, 3), pady=2)
         button_editor.grid(row=0, column=3, padx=(0, 0), pady=2)
         self._entry_sql.grid(row=0, column=1, sticky="we")

@@ -107,7 +107,7 @@ class Nodebar(View):
               titles=result[0],
               data=result[1],
               mask=self._content_table_mask,
-              extra_options={"column_options": {"height": 0}})
+              cnfs={"column_options": {"height": 0}})
         table.pack(side=tk.LEFT)
 
     def _install_db_schema(self, master, result, i=0, table_info=None):
