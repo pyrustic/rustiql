@@ -1,12 +1,12 @@
 import os
 import os.path
 import tkinter as tk
-from pyrustic.view import View
-from pyrustic.widget.toast import Toast
+from viewable import Viewable
+from megawidget.toast import Toast
 from tkinter import filedialog
 
 
-class Header(View):
+class Header(Viewable):
     def __init__(self, parent_view, host, internal_data_manager, project):
         super().__init__()
         self._parent_view = parent_view
@@ -21,7 +21,7 @@ class Header(View):
     def open_database(self, path):
         self._open(path)
 
-    def _on_build(self):
+    def _build(self):
         self._body = tk.Frame(self._parent_view.body, class_="HeaderBar")
         self._body.columnconfigure(1, weight=2, uniform=1)
         self._body.columnconfigure(3, weight=3, uniform=1)
@@ -60,7 +60,7 @@ class Header(View):
         button_new.grid(row=0, column=5, padx=(0, 3), pady=2)
         button_in_memory.grid(row=0, column=6, padx=(0, 0), pady=2)
 
-    def _on_display(self):
+    def _on_map(self):
         path = self._internal_data_manager.previously_stored(self._project)
         if path is None:
             return
@@ -91,7 +91,7 @@ class Header(View):
     def _open(self, filename):
         # try to open the database
         if not self._host.open(filename):
-            Toast(self._body, message="Invalid database !", duration=2000).build()
+            Toast(self._body, message="Invalid database !", duration=2000)
             return
         self._parent_view.notify_database_change()
         self._fill_form(filename)

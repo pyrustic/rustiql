@@ -1,6 +1,6 @@
 import tkinter as tk
-from pyrustic.view import View
-from pyrustic.widget.toast import Toast
+from viewable import Viewable
+from megawidget.toast import Toast
 import sqlite3 as sqlite
 
 
@@ -8,7 +8,7 @@ import sqlite3 as sqlite
 formatter: inline, expanded, script
 datatype: tabular_data, str_data, db_schema
 """
-class Footer(View):
+class Footer(Viewable):
     def __init__(self, parent_view, main_host, editor_builder):
         super().__init__()
         self._parent_view = parent_view
@@ -61,12 +61,12 @@ class Footer(View):
     # ==================================
     #           VIEW LIFECYCLE
     # ==================================
-    def _on_build(self):
+    def _build(self):
         self._body = tk.Frame(self._parent_view.body)
-        self._body.columnconfigure(1, weight=1)
+        self._body.columnconfigure(0, weight=1)
         # button clean
-        button_clear = tk.Button(self._body, text="x", name="buttonClearX",
-                                 command=self._on_click_clear)
+        #button_clear = tk.Button(self._body, text="x", name="buttonClearX",
+        #                         command=self._on_click_clear)
         # entry sql
         self._entry_sql = tk.Entry(self._body, textvariable=self._stringvar_sql)
         self._entry_sql.bind("<Return>", lambda e: self._on_click_run())
@@ -82,13 +82,13 @@ class Footer(View):
                                   text="Editor",
                                   command=self._on_click_editor)
         # install
-        button_clear.grid(row=0, column=0, sticky="we", padx=2)
-        button_run.grid(row=0, column=2, padx=(3, 3), pady=2)
-        button_editor.grid(row=0, column=3, padx=(0, 0), pady=2)
-        self._entry_sql.grid(row=0, column=1, sticky="we")
+        #button_clear.grid(row=0, column=0, sticky="we", padx=2)
+        button_run.grid(row=0, column=1, padx=(3, 3), pady=2)
+        button_editor.grid(row=0, column=2, padx=(0, 0), pady=2)
+        self._entry_sql.grid(row=0, column=0, sticky="we")
         return self._body
 
-    def _on_display(self):
+    def _on_map(self):
         pass
 
     def _on_destroy(self):
@@ -100,7 +100,7 @@ class Footer(View):
     def _exec_sql(self, sql, formatter, is_script=False):
         if self._main_host.path is None:
             Toast(self._body, header="Error",
-                  message="Database missing !", duration=2000).build()
+                  message="Database missing !", duration=2000)
             return
         result = result_datatype = description = None
         close_app = False

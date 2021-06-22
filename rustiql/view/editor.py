@@ -1,11 +1,11 @@
 import tkinter as tk
-from pyrustic.widget.toast import Toast
-from pyrustic.view import View
-from pyrustic import tkmisc
+from megawidget.toast import Toast
+from viewable import Viewable
+import tkutil
 from tkinter import filedialog
 
 
-class Editor(View):
+class Editor(Viewable):
     def __init__(self, parent_view, project):
         super().__init__()
         self._parent_view = parent_view
@@ -15,7 +15,7 @@ class Editor(View):
         # intvar
         self._intvar_is_script = tk.IntVar()
 
-    def _on_build(self):
+    def _build(self):
         self._body = tk.Toplevel(class_="Editor")
         self._body.protocol("WM_DELETE_WINDOW", self._on_click_cancel)
         self._body.columnconfigure(0, weight=1)
@@ -51,8 +51,9 @@ class Editor(View):
         button_cancel.pack(side=tk.RIGHT, padx=(3, 3))
         checkbutton.pack(side=tk.LEFT)
 
-    def _on_display(self):
-        tkmisc.dialog_effect(self._body)
+    def _on_map(self):
+        super()._on_map()
+        tkutil.dialog_effect(self._body)
         intvar, sql = self._parent_view.cache_editor_data
         self._intvar_is_script.set(intvar)
         self._text_widget.insert("end", sql)
@@ -60,9 +61,6 @@ class Editor(View):
 
     def _on_destroy(self):
         pass
-
-    def _toplevel_geometry(self):
-        tkmisc.center_window(self._body)
 
     # ========================================
     #           EVENTS HANDLERS
@@ -83,7 +81,7 @@ class Editor(View):
             except Exception as e:
                 Toast(self._body,
                       message="Failed to load the data",
-                      duration=2000).build()
+                      duration=2000)
 
             self._text_widget.insert("end", data)
 

@@ -1,10 +1,10 @@
-from pyrustic.view import View
-from pyrustic.widget.table import Table
-from pyrustic.widget.confirm import Confirm
+from viewable import Viewable
+from megawidget.table import Table
+from megawidget.confirm import Confirm
 import tkinter as tk
 
 
-class Nodebar(View):
+class Nodebar(Viewable):
     def __init__(self, parent_view,
                  node_id,
                  collapsable_frame,
@@ -26,7 +26,7 @@ class Nodebar(View):
         self._description = description
         self._body = None
 
-    def _on_build(self):
+    def _build(self):
         self._body = self._collapsable_frame
         text = tk.Text(self._body,
                        height=1,
@@ -42,7 +42,7 @@ class Nodebar(View):
         # fill Frame
         self._fill_result_frame(result_frame)
 
-    def _on_display(self):
+    def _on_map(self):
         pass
 
     def _on_destroy(self):
@@ -178,8 +178,8 @@ class Nodebar(View):
                           data=table_info[1],
                           hidden_columns=(0,),
                           orient="h",
-                          mask=self._schema_table_mask,
-                          options={"column_options": {"height": 0}})
+                          mask=self._schema_table_mask)
+                          #options={"column_options": {"height": 0}})
             table.pack()
             command = lambda container=container: container.pack(pady=(0, 20), anchor="w")
             self._body.after(i, command)

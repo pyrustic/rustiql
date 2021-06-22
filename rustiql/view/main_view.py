@@ -1,12 +1,12 @@
 import os
 import os.path
 import tkinter as tk
-from pyrustic.view import View
-from pyrustic.widget.scrollbox import Scrollbox
+from viewable import Viewable
+from megawidget.scrollbox import Scrollbox
 from rustiql.view.tree_hook import TreeHook
 
 
-class MainView(View):
+class MainView(Viewable):
     def __init__(self, app, project, main_host, internal_data_manager,
                  header_builder, tree_builder, nodebar_builder,
                  footer_builder):
@@ -70,7 +70,7 @@ class MainView(View):
     def leave_app(self):
         self._app.close()
 
-    def _on_build(self):
+    def _build(self):
         self._body = tk.Frame(self._app.root)
         self._body.columnconfigure(0, weight=1)
         self._body.rowconfigure(1, weight=1)
@@ -99,7 +99,7 @@ class MainView(View):
                          self._nodebar_builder, self._main_host))
         self._tree.hook = hook
 
-    def _on_display(self):
+    def _on_map(self):
         # insert root node
         node_id = self._tree.insert(expand=True)
         self._tree.ghost(node_id)

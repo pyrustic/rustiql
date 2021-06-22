@@ -1,0 +1,14 @@
+{
+    "ante_build": [
+        "rustiql.hooking.ante_build_hook"
+    ],
+    "ante_release": [
+        "rustiql.hooking.ante_release_hook"
+    ],
+    "post_build": [
+        "rustiql.hooking.post_build_hook"
+    ],
+    "post_release": [
+        "rustiql.hooking.post_release_hook"
+    ]
+}

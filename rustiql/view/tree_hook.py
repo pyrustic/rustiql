@@ -1,5 +1,5 @@
 import tkinter as tk
-from pyrustic.widget.tree import Hook
+from megawidget.tree import Hook
 
 
 class TreeHook(Hook):
@@ -31,7 +31,7 @@ class TreeHook(Hook):
         formatter = "inline"
         self._parent_view.push_sql(sql, formatter, execute=True)
 
-    def on_build_node(self, tree, node, frame):
+    def build_node(self, tree, node, frame):
         node_id = node["node_id"]
         if node_id == 0:
             return
@@ -91,7 +91,7 @@ class TreeHook(Hook):
                                     file, path, real_path, result,
                                     datatype, description)
 
-    def on_display_node(self, tree, node):
+    def on_map_node(self, tree, node):
         pass
 
     def on_destroy_node(self, tree, node):

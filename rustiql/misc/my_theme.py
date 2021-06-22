@@ -1,15 +1,15 @@
-from pyrustic.theme import Theme
-from tk_cyberpunk_theme.main import Cyberpunk
-from tk_cyberpunk_theme import constant
-from tk_cyberpunk_theme.pyrustic_widget import tree
-from tk_cyberpunk_theme.pyrustic_widget import scrollbox
-from tk_cyberpunk_theme.pyrustic_widget import confirm
-from tk_cyberpunk_theme.pyrustic_widget import table
-from tk_cyberpunk_theme.native_widget import frame
-from tk_cyberpunk_theme.native_widget import label
-from tk_cyberpunk_theme.native_widget import entry
-from tk_cyberpunk_theme.native_widget import button
-from tk_cyberpunk_theme.native_widget import text
+from themebase import Theme
+from cyberpunk_theme import Cyberpunk
+from cyberpunk_theme import constant
+from cyberpunk_theme.megawidget import tree
+from cyberpunk_theme.megawidget import scrollbox
+from cyberpunk_theme.megawidget import confirm
+from cyberpunk_theme.megawidget import table
+from cyberpunk_theme.widget import frame
+from cyberpunk_theme.widget import label
+from cyberpunk_theme.widget import entry
+from cyberpunk_theme.widget import button
+from cyberpunk_theme.widget import text
 
 
 # ========================================

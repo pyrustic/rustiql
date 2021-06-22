@@ -6,15 +6,17 @@ from rustiql.view.header import Header
 from rustiql.view.footer import Footer
 from rustiql.view.editor import Editor
 from rustiql.view.nodebar import Nodebar
-from pyrustic.dao import Dao
-from pyrustic.widget.tree import Tree
-from pyrustic.manager.misc import funcs
+from jayson import Jayson
+from litedao import Litedao
+from megawidget.tree import Tree
+from pyrustic.manager import constant
+from pyrustic.manager import core as manager_core
 import os
 
 
 class MainDaoBuilder:
     def build(self, path):
-        dao = Dao(path)
+        dao = Litedao(path)
         return MainDao(dao)
 
 
@@ -25,8 +27,6 @@ class MainHostBuilder:
 
 class MainViewBuilder:
     def build(self, app):
-        #jasonix = funcs.get_manager_jasonix()
-        #target = jasonix.data["target"]
         target = os.getcwd()
         main_host = MainHostBuilder().build()
         internal_data_manager = InternalDataManagerBuilder().build()
@@ -66,8 +66,8 @@ class EditorBuilder:
 
 class InternalDataManagerBuilder:
     def build(self):
-        manager_jasonix = funcs.get_manager_jasonix()
-        sqleditor_jasonix = funcs.get_sqleditor_jasonix(False)
+        manager_jasonix = _get_manager_jasonix()
+        sqleditor_jasonix = _get_sqleditor_jasonix(False)
         return InternalDataManager(manager_jasonix, sqleditor_jasonix)
 
 
@@ -82,3 +82,19 @@ class NodebarBuilder:
                        description)
         node.build()
         return node
+
+
+def _get_manager_jasonix(readonly=True):
+    manager_core.install()
+    jasonix = Jayson(constant.MANAGER_SHARED_DATA_FILE,
+                      readonly=readonly)
+    return jasonix
+
+
+def _get_sqleditor_jasonix(readonly=True):
+    manager_core.install()
+    path = os.path.join(constant.SHARED_PYRUSTIC_DATA,
+                        "rustiql",
+                        "rustiql_shared_data.json")
+    jasonix = Jayson(path, readonly=readonly)
+    return jasonix
