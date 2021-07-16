@@ -1,4 +1,4 @@
-from themebase import Theme
+import tkstyle
 from cyberpunk_theme import Cyberpunk
 from cyberpunk_theme import constant
 from cyberpunk_theme.megawidget import tree
@@ -17,45 +17,37 @@ from cyberpunk_theme.widget import text
 # ========================================
 def get_theme():
     theme = Cyberpunk()
-    theme.add_theme(_get_general_theme())
-    theme.add_theme(tree.get_theme())
-    theme.add_theme(scrollbox.get_theme())
-    theme.add_theme(confirm.get_theme())
-    theme.add_theme(table.get_theme())
+    theme.add(_get_frame_header_bar_style(),
+                    pattern="*HeaderBar")
+    theme.add(_get_label_header_bar_style(),
+                    pattern="*HeaderBar*Label")
+    theme.add(_get_entry_database_style(),
+                    pattern="*HeaderBar*Entry")
+    theme.add(_get_button_expander_style(),
+                    pattern="*treeExpanderButton")
+    theme.add(_get_button_edit_style(),
+                    pattern="*buttonEdit")
+    theme.add(_get_entry_tree_title_style(),
+                    pattern="*treeTitle")
+    theme.add(_get_frame_collapsable_style(),
+                    pattern="*CollapsableFrame")
+    theme.add(_get_frame_collapsable_style(),
+                    pattern="*CollapsableFrame*Frame")
+    theme.add(_get_text_message_style(),
+                    pattern="*CollapsableFrame*textMessage")
+    theme.add(_get_button_clear_x_style(),
+                    pattern="*buttonClearX")
+    theme.add(_get_text_editor_style(),
+                    pattern="*Editor*Text")
+    theme.add(_get_label_schema_title_style(),
+                    pattern="*CollapsableFrame*schemaTitle")
+    theme.add(_get_button_above_table_style(),
+                    pattern="*CollapsableFrame*Button")
     return theme
 
 # ========================================
 #               PRIVATE
 # ========================================
-def _get_general_theme():
-    theme = Theme()
-    theme.add_style(_get_frame_header_bar_style(),
-                    scope="*HeaderBar*")
-    theme.add_style(_get_label_header_bar_style(),
-                    scope="*HeaderBar*Label*")
-    theme.add_style(_get_entry_database_style(),
-                    scope="*HeaderBar*Entry*")
-    theme.add_style(_get_button_expander_style(),
-                    scope="*treeExpanderButton*")
-    theme.add_style(_get_button_edit_style(),
-                    scope="*buttonEdit*")
-    theme.add_style(_get_entry_tree_title_style(),
-                    scope="*treeTitle*")
-    theme.add_style(_get_frame_collapsable_style(),
-                    scope="*CollapsableFrame*")
-    theme.add_style(_get_frame_collapsable_style(),
-                    scope="*CollapsableFrame*Frame*")
-    theme.add_style(_get_text_message_style(),
-                    scope="*CollapsableFrame*textMessage*")
-    theme.add_style(_get_button_clear_x_style(),
-                    scope="*buttonClearX*")
-    theme.add_style(_get_text_editor_style(),
-                    scope="*Editor*Text*")
-    theme.add_style(_get_label_schema_title_style(),
-                    scope="*CollapsableFrame*schemaTitle*")
-    theme.add_style(_get_button_above_table_style(),
-                    scope="*CollapsableFrame*Button*")
-    return theme
 
 
 # header bar

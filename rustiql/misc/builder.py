@@ -10,7 +10,7 @@ from jayson import Jayson
 from litedao import Litedao
 from megawidget.tree import Tree
 from pyrustic.manager import constant
-from pyrustic.manager import core as manager_core
+import pyrustic.manager as manager_core
 import os
 
 
