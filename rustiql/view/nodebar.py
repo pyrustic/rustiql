@@ -55,6 +55,7 @@ class Nodebar(Viewable):
         if self._description == "success":
             tag = "textMessageSuccess"
             background = "#43A910"
+            background = "#094431"
             if self._datatype == "str_data":
                 message = self._result
             elif self._datatype == "tabular_data":
@@ -71,10 +72,12 @@ class Nodebar(Viewable):
             tag = "textMessageWarning"
             message = self._result
             background = "#FF285B"
+            background = "#AA2323"
         elif self._description == "error":
             tag = "textMessageError"
             message = self._result
             background = "#FF285B"
+            background = "#AA2323"
         message += " "
         text.insert("1.0", message)
         text.tag_add("message", "1.0", "1.{}".format(len(message)))
@@ -107,7 +110,7 @@ class Nodebar(Viewable):
               titles=result[0],
               data=result[1],
               mask=self._content_table_mask,
-              cnfs={"column_options": {"height": 0}})
+              megaconfig={"column_options": {"height": 0}})
         table.pack(side=tk.LEFT)
 
     def _install_db_schema(self, master, result, i=0, table_info=None):
@@ -119,10 +122,10 @@ class Nodebar(Viewable):
             if i < len(result)-1:
                 self._body.after(200, lambda :self._install_db_schema(master, result, i=i+1))
         header = ["Index", "Name", "Type", "Nullability", "Default", "Qualifier"]
-        container = tk.Frame(master, class_="SchemaContainer")
+        container = tk.Frame(master, class_="SchemaContainer", bg="#121519")
         container.pack(pady=(0, 20), anchor="w")
         title_frame = tk.Frame(container)
-        title_frame.pack(fill=tk.X, pady=(0,3))
+        title_frame.pack(fill=tk.X, pady=(0, 3))
         tk.Label(title_frame, name="schemaTitle", text=table_info[0]).pack(side=tk.LEFT)
 
         button_explore = tk.Button(title_frame,

@@ -6,11 +6,11 @@ from rustiql.view.header import Header
 from rustiql.view.footer import Footer
 from rustiql.view.editor import Editor
 from rustiql.view.nodebar import Nodebar
-from jayson import Jayson
+from shared import Jason
 from litedao import Litedao
 from megawidget.tree import Tree
-from pyrustic.manager import constant
-import pyrustic.manager as manager_core
+from backstage import constant
+import backstage as manager_core
 import os
 
 
@@ -86,15 +86,15 @@ class NodebarBuilder:
 
 def _get_manager_jasonix(readonly=True):
     manager_core.install()
-    jasonix = Jayson(constant.MANAGER_SHARED_DATA_FILE,
-                      readonly=readonly)
+    jasonix = Jason("recent", location=constant.BACKSTAGE_DATA_PATH,
+                    readonly=readonly)
     return jasonix
 
 
 def _get_sqleditor_jasonix(readonly=True):
     manager_core.install()
-    path = os.path.join(constant.SHARED_PYRUSTIC_DATA,
-                        "rustiql",
-                        "rustiql_shared_data.json")
-    jasonix = Jayson(path, readonly=readonly)
+    path = os.path.join(constant.PYRUSTIC_DATA_PATH,
+                        "rustiql")
+    jasonix = Jason("rustiql_shared_data", location=path,
+                    readonly=readonly)
     return jasonix
