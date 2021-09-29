@@ -72,7 +72,7 @@ class MainHost:
                                             "misc/default_shared_data.json")
             with open(shared_json_path, "wb") as file:
                 file.write(default_json)
-        self._jasonix = Jason("rustiql_shared_data",
+        self._jasonix = Jason("rustiql_shared_data.json",
                               location=shared_folder)
 
     def _open(self, path):

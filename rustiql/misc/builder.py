@@ -86,7 +86,7 @@ class NodebarBuilder:
 
 def _get_manager_jasonix(readonly=True):
     manager_core.install()
-    jasonix = Jason("recent", location=constant.BACKSTAGE_DATA_PATH,
+    jasonix = Jason("recent.json", location=constant.BACKSTAGE_DATA_PATH,
                     readonly=readonly)
     return jasonix
 
@@ -95,6 +95,6 @@ def _get_sqleditor_jasonix(readonly=True):
     manager_core.install()
     path = os.path.join(constant.PYRUSTIC_DATA_PATH,
                         "rustiql")
-    jasonix = Jason("rustiql_shared_data", location=path,
+    jasonix = Jason("rustiql_shared_data.json", location=path,
                     readonly=readonly)
     return jasonix
