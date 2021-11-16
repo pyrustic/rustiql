@@ -7,11 +7,10 @@ from tkinter import filedialog
 
 
 class Header(Viewable):
-    def __init__(self, parent_view, host, internal_data_manager, project):
+    def __init__(self, parent_view, host, project):
         super().__init__()
         self._parent_view = parent_view
         self._host = host
-        self._internal_data_manager = internal_data_manager
         self._project = project
         self._body = None
         # stringvar
@@ -61,10 +60,7 @@ class Header(Viewable):
         button_in_memory.grid(row=0, column=6, padx=(0, 0), pady=2)
 
     def _on_map(self):
-        path = self._internal_data_manager.previously_stored(self._project)
-        if path is None:
-            return
-        self._open(path)
+        pass
 
     def _on_destroy(self):
         pass
@@ -96,7 +92,6 @@ class Header(Viewable):
         self._parent_view.notify_database_change()
         self._fill_form(filename)
         # store path
-        self._internal_data_manager.store(self._project, filename)
 
     def _fill_form(self, filename):
         database = "<NO FILE>"

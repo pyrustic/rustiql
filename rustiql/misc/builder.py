@@ -29,15 +29,14 @@ class MainViewBuilder:
     def build(self, app):
         target = os.getcwd()
         main_host = MainHostBuilder().build()
-        internal_data_manager = InternalDataManagerBuilder().build()
-        return MainView(app, target, main_host, internal_data_manager,
+        return MainView(app, target, main_host,
                         HeaderBuilder(), TreeBuilder(),
                         NodebarBuilder(), FooterBuilder())
 
 
 class HeaderBuilder:
-    def build(self, parent_view, host, internal_database_manager, target):
-        header = Header(parent_view, host, internal_database_manager, target)
+    def build(self, parent_view, host, target):
+        header = Header(parent_view, host, target)
         header.build()
         return header
 
@@ -64,13 +63,6 @@ class EditorBuilder:
         editor.build_wait()
 
 
-class InternalDataManagerBuilder:
-    def build(self):
-        manager_jasonix = _get_manager_jasonix()
-        sqleditor_jasonix = _get_sqleditor_jasonix(False)
-        return InternalDataManager(manager_jasonix, sqleditor_jasonix)
-
-
 class NodebarBuilder:
     def build(self, parent_view, node_id,
               collapsable_frame, file, path,
@@ -84,17 +76,7 @@ class NodebarBuilder:
         return node
 
 
-def _get_manager_jasonix(readonly=True):
-    manager_core.install()
-    jasonix = Jason("recent.json", location=constant.BACKSTAGE_DATA_PATH,
-                    readonly=readonly)
-    return jasonix
-
-
 def _get_sqleditor_jasonix(readonly=True):
-    manager_core.install()
-    path = os.path.join(constant.PYRUSTIC_DATA_PATH,
-                        "rustiql")
-    jasonix = Jason("rustiql_shared_data.json", location=path,
+    jasonix = Jason("rustiql_shared_data.json",
                     readonly=readonly)
     return jasonix

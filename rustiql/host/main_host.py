@@ -63,17 +63,7 @@ class MainHost:
         return self._dao.table_content(name)
 
     def _setup(self):
-        shared_folder = os.path.join(constant.PYRUSTIC_DATA_PATH, "rustiql")
-        shared_json_path = os.path.join(shared_folder, "rustiql_shared_data.json")
-        if not os.path.exists(shared_folder):
-            os.makedirs(shared_folder)
-        if not os.path.exists(shared_json_path):
-            default_json = pkgutil.get_data("rustiql",
-                                            "misc/default_shared_data.json")
-            with open(shared_json_path, "wb") as file:
-                file.write(default_json)
-        self._jasonix = Jason("rustiql_shared_data.json",
-                              location=shared_folder)
+        pass
 
     def _open(self, path):
         dao = None

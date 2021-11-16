@@ -2,19 +2,18 @@ import os
 import os.path
 import tkinter as tk
 from viewable import Viewable
-from megawidget.scrollbox import Scrollbox
+from megawidget.scrollbox import ScrollBox
 from rustiql.view.tree_hook import TreeHook
 
 
 class MainView(Viewable):
-    def __init__(self, app, project, main_host, internal_data_manager,
+    def __init__(self, app, project, main_host,
                  header_builder, tree_builder, nodebar_builder,
                  footer_builder):
         super().__init__()
         # args/kwargs
         self._app = app
         self._main_host = main_host
-        self._internal_data_manager = internal_data_manager
         self._project = project
         # builders
         self._header_builder = header_builder
@@ -77,7 +76,6 @@ class MainView(Viewable):
         # install header
         self._header = self._header_builder.build(self,
                                                   self._main_host,
-                                                  self._internal_data_manager,
                                                   self._project)
         self._header.body.grid(row=0, column=0, sticky="we",
                                padx=2)
@@ -88,7 +86,7 @@ class MainView(Viewable):
         self._footer.body.grid(row=2, column=0, sticky="we",
                                padx=2)
         # install scrollbox
-        self._scrollbox = Scrollbox(self._body, orient="y")
+        self._scrollbox = ScrollBox(self._body, orient="y")
         self._scrollbox.grid(row=1, column=0, sticky="nswe", pady=1)
         # install tree
         self._tree = self._tree_builder.build(self._scrollbox.box,

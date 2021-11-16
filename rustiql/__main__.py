@@ -1,4 +1,4 @@
-from pyrustic.app import App
+from tkf import App
 from rustiql.misc.builder import MainViewBuilder
 from rustiql.misc import my_theme
 

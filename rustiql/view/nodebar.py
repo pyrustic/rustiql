@@ -1,6 +1,6 @@
 from viewable import Viewable
 from megawidget.table import Table
-from megawidget.confirm import Confirm
+from megawidget.confirmation import Confirmation
 import tkinter as tk
 
 
@@ -205,7 +205,7 @@ class Nodebar(Viewable):
         self._parent_view.on_click_explore(name)
 
     def _on_click_truncate(self, name):
-        confirm = Confirm(self._body,
+        confirm = Confirmation(self._body,
                           title="Confirmation",
                           header="Truncate the table {}".format(name),
                           message="Do you really want to continue ?")
@@ -214,7 +214,7 @@ class Nodebar(Viewable):
             self._parent_view.on_click_truncate(name)
 
     def _on_click_drop(self, name):
-        confirm = Confirm(self._body,
+        confirm = Confirmation(self._body,
                           title="Confirmation",
                           header="Drop the table {}".format(name),
                           message="Do you really want to continue ?")

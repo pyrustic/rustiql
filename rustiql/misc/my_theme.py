@@ -1,10 +1,5 @@
-import tkstyle
 from cyberpunk_theme import Cyberpunk
 from cyberpunk_theme import constant
-from cyberpunk_theme.megawidget import tree
-from cyberpunk_theme.megawidget import scrollbox
-from cyberpunk_theme.megawidget import confirm
-from cyberpunk_theme.megawidget import table
 from cyberpunk_theme.widget import frame
 from cyberpunk_theme.widget import label
 from cyberpunk_theme.widget import entry
@@ -61,7 +56,7 @@ def _get_label_header_bar_style():
     style = label.get_style()
     style.background = "#005954"
     style.foreground = "#ECFFFF"
-    style.font = constant.FONT_FAV_BOLD
+    style.font = (constant.FONT_FAMILY, constant.FONT_SIZE, "bold")
     return style
 
 
@@ -77,13 +72,13 @@ def _get_entry_database_style():
 # Button expander
 def _get_button_expander_style():
     style = button.get_style()
-    style.font = constant.FONT_FAV_BOLD
-    style.background = constant.COLOR_BLACK
+    style.font = (constant.FONT_FAMILY, constant.FONT_SIZE, "bold")
+    style.background = constant.BACKGROUND_COLOR
     style.foreground = "gray"
     style.highlightThickness = 0
     style.borderWidth = 0
     style.activeBackground = "white"
-    style.activeForeground = constant.COLOR_BLACK
+    style.activeForeground = constant.BACKGROUND_COLOR
     style.padX = 3
     style.padY = 1
     return style
@@ -98,8 +93,8 @@ def _get_button_edit_style():
 # Tree title (sql previously executed)
 def _get_entry_tree_title_style():
     style = entry.get_style()
-    style.readonlyBackground = constant.COLOR_BLACK
-    style.font = constant.FONT_FAV_BOLD
+    style.readonlyBackground = constant.BACKGROUND_COLOR
+    style.font = (constant.FONT_FAMILY, constant.FONT_SIZE, "bold")
     style.foreground = "#CFCFCF"
     style.relief = "flat"
     return style
@@ -108,7 +103,7 @@ def _get_entry_tree_title_style():
 # Collapsable frame
 def _get_frame_collapsable_style():
     style = frame.get_style()
-    style.background = constant.COLOR_BLACK
+    style.background = constant.BACKGROUND_COLOR
     return style
 
 
@@ -116,7 +111,7 @@ def _get_frame_collapsable_style():
 def _get_text_message_style():
     style = text.get_style()
     style.foreground = "white"
-    style.background = constant.COLOR_BLACK
+    style.background = constant.BACKGROUND_COLOR
     style.highlightThickness = 0
     style.relief = "flat"
     return style
@@ -150,14 +145,14 @@ def _get_text_editor_style():
 def _get_label_schema_title_style():
     style = label.get_style()
     style.foreground = "#E0D7D7"
-    style.font = constant.FONT_FAV_BOLD
+    style.font = constant.BACKGROUND_COLOR
     return style
 
 
 # buttons above table
 def _get_button_above_table_style():
     style = button.get_style()
-    style.background = constant.COLOR_BLACK
+    style.background = constant.BACKGROUND_COLOR
     style.foreground = "#486B6B"
     style.highlightBackground = "#486B6B"
     style.relief = "flat"

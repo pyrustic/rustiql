@@ -1,7 +1,7 @@
 import tkinter as tk
+import tkutil
 from megawidget.toast import Toast
 from viewable import Viewable
-import tkutil
 from tkinter import filedialog
 
 
